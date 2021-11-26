@@ -1,0 +1,58 @@
+def gv
+
+pipeline {
+    agent any
+    tools {
+        maven 'maven-3.8'
+    }
+    stages {
+        stage("initializing") {
+            steps {
+                script {
+                    gv = load "script.groovy"
+                }
+            }
+        }
+        stage ("increment version"){
+            steps {
+                script {
+                    echo "incrementing version"
+                    gv.incrementVersion()
+                }
+            }
+
+        }
+        stage("build jar") {
+            steps {
+                script {
+                    echo "building app"
+                    gv.buildJar()
+                }
+            }
+        }
+        stage("build image") {
+            steps {
+                script {
+                    echo "building image"
+                    gv.buildImage()
+                }
+            }
+        }
+        stage("deploy") {
+            steps {
+                script {
+                    echo "deploying"
+                    gv.deployApp()
+                }
+            }
+        }
+        stage('commit version update'){
+            steps {
+                script {
+                    gv.commitVersion()
+                }
+            }
+
+        }
+    }   
+}
