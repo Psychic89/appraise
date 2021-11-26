@@ -2,31 +2,19 @@ def gv
 
 pipeline {
     agent any
-    tools {
-        maven 'maven-3.8'
-    }
     stages {
-        stage("initializing") {
+        stage("init") {
             steps {
                 script {
                     gv = load "script.groovy"
                 }
             }
         }
-        stage ("increment version"){
-            steps {
-                script {
-                    echo "incrementing version"
-                    gv.incrementVersion()
-                }
-            }
-
-        }
         stage("build jar") {
             steps {
                 script {
-                    echo "building app"
-                    gv.buildJar()
+                    echo "building jar"
+                    //gv.buildJar()
                 }
             }
         }
@@ -34,7 +22,7 @@ pipeline {
             steps {
                 script {
                     echo "building image"
-                    gv.buildImage()
+                    //gv.buildImage()
                 }
             }
         }
@@ -42,17 +30,9 @@ pipeline {
             steps {
                 script {
                     echo "deploying"
-                    gv.deployApp()
+                    //gv.deployApp()
                 }
             }
-        }
-        stage('commit version update'){
-            steps {
-                script {
-                    gv.commitVersion()
-                }
-            }
-
         }
     }   
 }
