@@ -11,6 +11,7 @@ locals {
     local.tags,
     tomap({
         "VPC-Name" = local.vpc_name
+        "VPC-Name" = local.vpc_name
     })
   )
 

@@ -1,12 +1,12 @@
 ########################################
 # Environment setting
 ########################################
-region = "ap-northeast-1"
+region = "eu-central-1"
 role_name    = "Admin"
 profile_name = "aws-demo"
 env = "prod"
-application_name = "terraform-eks-demo-infra"
-app_name = "terraform-eks-demo-infra"
+application_name = "apprise-infra"
+app_name = "apprise-infra"
 
 ########################################
 ## Terraform State S3 Bucket
